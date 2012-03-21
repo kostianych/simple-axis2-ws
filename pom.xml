@@ -48,6 +48,22 @@
 			<artifactId>axis2-transport-local</artifactId>
 			<version>${axis2.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jibx.schema.org.xmlsoap.schemas</groupId>
+			<artifactId>org.xmlsoap.schemas</artifactId>
+			<version>1.0.0</version>
+			<type>pom</type>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -70,6 +86,48 @@
 					</webAppConfig>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+                <groupId>org.apache.axis2</groupId>
+                <artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <configuration>
+                	<packageName>com.gmail.kostianych.ws</packageName>
+                    <wsdlFile>http://localhost:8080/services/SimpleService?wsdl</wsdlFile>
+                    <databindingName>xmlbeans</databindingName>
+                    <outputDirectory>gen</outputDirectory>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsdl2code</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>gen/src</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            
 		</plugins>
 	</build>
 </project>
