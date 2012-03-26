@@ -74,6 +74,11 @@
 			<artifactId>jetty-util</artifactId>
 			<version>6.0.2</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.ws.commons.axiom</groupId>
+		    <artifactId>axiom-impl</artifactId>
+		    <version>1.2.12</version>
+		</dependency>
 	</dependencies>
 
 	<build>
