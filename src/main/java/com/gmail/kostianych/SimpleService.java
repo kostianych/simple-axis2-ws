@@ -21,7 +21,7 @@ package com.gmail.kostianych;
 
 public class SimpleService {
     
-    public String  helloService(String msg){
+    public String  sayHello(String msg){
         return "Hello "+ msg;
     }
 
