@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+		  xmlns:ns1="http://org.apache.axis2/xsd"
+		  xmlns:ns="http://kostianych.gmail.com"
+		  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+		  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+		  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+		  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+		  targetNamespace="http://kostianych.gmail.com">
+    <wsdl:documentation>ByeService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://kostianych.gmail.com">
+            <xs:element name="sayBye">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="msg" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sayByeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="byeServiceRequest"/>
+    <wsdl:message name="byeServiceResponse"/>
+    <wsdl:message name="sayByeRequest">
+        <wsdl:part name="parameters" element="ns:sayBye"/>
+    </wsdl:message>
+    <wsdl:message name="sayByeResponse">
+        <wsdl:part name="parameters" element="ns:sayByeResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="ByeServicePortType">
+        <wsdl:operation name="sayHello">
+            <wsdl:input message="ns:sayByeRequest" wsaw:Action="urn:sayBye"/>
+            <wsdl:output message="ns:sayByeResponse" wsaw:Action="urn:sayByeResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="ByeServiceSoap11Binding" type="ns:ByeServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="sayBye">
+            <soap:operation soapAction="urn:sayBye" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+
+    <wsdl:service name="ByeService">
+        <wsdl:port name="ByeServiceHttpSoap11Endpoint" binding="ns:ByeServiceSoap11Binding">
+            <soap:address location="http://localhost:8080/services/ByeService.ByeServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>
