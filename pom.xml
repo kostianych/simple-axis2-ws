@@ -108,7 +108,10 @@
                 <version>1.5.1</version>
                 <configuration>
                 	<packageName>com.gmail.kostianych.ws</packageName>
-                    <wsdlFile>http://localhost:8080/services/SimpleService?wsdl</wsdlFile>
+<!--                     <wsdlFile>http://localhost:8080/services/SimpleService?wsdl</wsdlFile> -->
+                    <wsdlFile>src/main/resources/ByeService.wsdl</wsdlFile>
+                    <generateServerSide>true</generateServerSide>
+                    <generateServerSideInterface>true</generateServerSideInterface>
                     <databindingName>xmlbeans</databindingName>
                     <outputDirectory>gen</outputDirectory>
                 </configuration>

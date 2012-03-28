@@ -38,7 +38,7 @@
     </wsdl:message>
 
     <wsdl:portType name="ByeServicePortType">
-        <wsdl:operation name="sayHello">
+        <wsdl:operation name="sayBye">
             <wsdl:input message="ns:sayByeRequest" wsaw:Action="urn:sayBye"/>
             <wsdl:output message="ns:sayByeResponse" wsaw:Action="urn:sayByeResponse"/>
         </wsdl:operation>
