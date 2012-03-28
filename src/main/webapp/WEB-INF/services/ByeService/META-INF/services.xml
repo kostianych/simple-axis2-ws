@@ -21,7 +21,7 @@
 
 <serviceGroup>
 	<service name="ByeService">
-		<parameter name="ServiceClass">com.gmail.kostianych.ByeService</parameter>
+		<parameter name="ServiceClass">com.gmail.kostianych.ByeServiceSkeleton</parameter>
 		<operation name="sayBye">
 			<messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
 		</operation>
