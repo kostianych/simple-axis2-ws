@@ -24,11 +24,11 @@ import org.mortbay.jetty.webapp.WebAppContext;
 public class TestBuyService {
 
 	private static EndpointReference targetEPR = 
-	        new EndpointReference("http://localhost:8080/services/ByeService");
+	        new EndpointReference("http://localhost:8085/services/ByeService");
 
     @Before
     public void setUp() throws Exception {
-    	Server server = new Server(8080);
+    	Server server = new Server(8085);
     	
 //    	 Connector connector = new SelectChannelConnector();
 //         connector.setPort(8085);
@@ -36,14 +36,14 @@ public class TestBuyService {
         
         WebAppContext wactx = new WebAppContext();
         wactx.setParentLoaderPriority(true);
-        wactx.setContextPath("/services");
+        wactx.setContextPath("/");
         wactx.setWar("src/main/webapp");
 
         HandlerCollection handlers = new HandlerCollection();
         handlers.setHandlers(new Handler[] {wactx, new DefaultHandler()});
         server.setHandler(handlers);
         server.start();
-        server.join();
+        //server.join();
 
     }
 	
